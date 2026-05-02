@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CLOTHINGSHOP | THE OBSIDIAN MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#a68a86",
+                        "on-primary-container": "#fb5945",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#474747",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "tertiary": "#c8c6c6",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#ffb4a8",
+                        "on-tertiary-container": "#929190",
+                        "surface-tint": "#ffb4a8",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "on-secondary-fixed-variant": "#474747",
+                        "surface-dim": "#131313",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "on-secondary": "#303030",
+                        "on-secondary-container": "#b6b5b4",
+                        "surface-container-highest": "#353534",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#b52619",
+                        "on-tertiary": "#303030",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary-fixed": "#410000",
+                        "tertiary-container": "#2a2a2a",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#c8c6c5",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "surface-bright": "#393939",
+                        "surface": "#131313",
+                        "primary-container": "#5c0000",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#690000",
+                        "outline-variant": "#57423e",
+                        "on-primary-fixed-variant": "#920703",
+                        "surface-variant": "#353534",
+                        "primary-fixed": "#ffdad4",
+                        "on-surface-variant": "#dfc0bb",
+                        "background": "#131313",
+                        "secondary-fixed": "#e4e2e1",
+                        "inverse-on-surface": "#313030",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed": "#e4e2e1",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0e0e0e;
+            color: #e5e2e1;
+            font-family: 'Manrope', sans-serif;
+        }
+        .text-glow-crimson {
+            text-shadow: 0 0 15px rgba(146, 7, 3, 0.4);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface selection:bg-primary-container selection:text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-12 py-6 h-20 bg-neutral-950 dark:bg-[#0e0e0e] z-50">
+<div class="flex items-center gap-12">
+<a class="text-2xl font-bold tracking-[0.2em] text-[#e5e2e1] uppercase font-headline" href="#">CLOTHINGSHOP</a>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<div class="group relative py-4">
+<a class="text-[#e5e2e1] hover:text-[#ffb4a8] transition-colors duration-300 font-headline tracking-tighter uppercase text-sm" href="#">TOPS</a>
+<div class="absolute top-full left-0 w-48 bg-surface-container-high opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col p-4 gap-2 border-t-2 border-primary-container">
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">SHIRTS</a>
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">OUTERWEAR</a>
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">KNITWEAR</a>
+</div>
+</div>
+<div class="group relative py-4">
+<a class="text-[#e5e2e1] hover:text-[#ffb4a8] transition-colors duration-300 font-headline tracking-tighter uppercase text-sm" href="#">BOTTOMS</a>
+<div class="absolute top-full left-0 w-48 bg-surface-container-high opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col p-4 gap-2 border-t-2 border-primary-container">
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">PANTS</a>
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">SKIRTS</a>
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">TROUSERS</a>
+</div>
+</div>
+<div class="group relative py-4">
+<a class="text-[#e5e2e1] hover:text-[#ffb4a8] transition-colors duration-300 font-headline tracking-tighter uppercase text-sm" href="#">ACCESSORIES</a>
+<div class="absolute top-full left-0 w-48 bg-surface-container-high opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col p-4 gap-2 border-t-2 border-primary-container">
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">BELTS</a>
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">BAGS</a>
+<a class="text-xs tracking-widest hover:text-primary transition-colors" href="#">JEWELRY</a>
+</div>
+</div>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#e5e2e1] hover:text-[#ffb4a8] transition-all duration-500 active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+<button class="text-[#e5e2e1] hover:text-[#ffb4a8] transition-all duration-500 active:scale-95 relative group">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary-container text-[8px] px-1 font-bold">0</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20">
+<!-- Hero Section: Rolling Gallery -->
+<section class="relative h-[921px] overflow-hidden bg-surface-dim">
+<div class="absolute inset-0 flex">
+<div class="min-w-full h-full relative">
+<img class="w-full h-full object-cover grayscale brightness-50" data-alt="moody editorial fashion shot of a person in oversized dark grey structured blazer against a brutalist concrete wall in dim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDao1vjoViKEffvn6chiOePJpggNWCMqI772iqzDZ5Xe_pxJs564IaaPy4VSioe227FlQipTI3QeabO2hCygRmbS2l1PZUbrEMm-Wvk1X4inCZbbtDmJgK8wDOZkapRp0oWRkpXcp3wg9Wx8bpX68KWOBy94xVVhuWCwkOgCGsoO7hFglLpLzqe6cgQjT-IMMXinBSqBZXhujgtbaIXMoqXXm7fllGOeoL17mJf_wSXYsgyx0u5rh89dFkzppWDpWLy5gRVApi_mlY"/>
+<div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+<h1 class="text-6xl md:text-8xl font-headline tracking-tighter uppercase font-bold text-on-surface opacity-90 mb-4">THE WINTER ARCHIVE</h1>
+<p class="font-body font-light tracking-[0.5em] text-sm uppercase opacity-60">MMXXIV COLLECTION / PHASE ONE</p>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator Overlay -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+<div class="w-[1px] h-20 bg-gradient-to-b from-primary to-transparent animate-pulse"></div>
+</div>
+</section>
+<!-- Product Categories: Chessboard Pattern -->
+<section class="px-12 py-32 space-y-32 bg-surface-container-lowest">
+<!-- Row 1: Tops -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-center">
+<div class="md:col-span-4 h-[716px] relative group overflow-hidden">
+<div class="absolute inset-0 bg-surface-container-high transition-transform duration-700 group-hover:scale-105">
+<img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="close up of a black heavy cotton unisex hoodie draped over a dark industrial chair with dramatic rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1Sa_O8s8Gv-uJsbqRKACCobMxqDjJzkbjsxxVmEwF3yz8U3VYN_pqodBkcOtOHPPYZ4EsNwtiSA1VEUmkyva6C-9rsiVdHZSKE5k-MvSwjdq0z_m34JKJ0tR6Lw1cXc6BrEqPI5JjCSaJK-Z11NgKcKArOcA1HSgNHQ_oJ4AoC2uQYamSL5ZnGN-OzhKmjo_xK30QbHAZPfglfvbQ76-3m5QouV8jFY1Fy8oJAAayip9TPNS3QQw5mECGl1F-C74ZlAWzB5e-Ogs"/>
+</div>
+</div>
+<div class="md:col-span-8 md:pl-24 pt-12 md:pt-0">
+<div class="max-w-xl">
+<h2 class="text-5xl font-headline font-bold tracking-tighter uppercase mb-6 text-on-surface">STRUCTURAL TOPS</h2>
+<p class="font-body font-light tracking-wide text-lg text-on-secondary-container mb-10 leading-relaxed">
+                            Engineered for the void. Our upper garments prioritize silhouette over ornament. Heavyweight textiles meeting clinical precision in every stitch.
+                        </p>
+<button class="bg-primary-container hover:bg-on-primary-fixed-variant text-on-surface px-12 py-5 font-headline tracking-[0.2em] uppercase text-xs transition-all duration-300">
+                            ACQUIRE INVENTORY
+                        </button>
+</div>
+</div>
+</div>
+<!-- Row 2: Bottoms (Reversed) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-center">
+<div class="order-2 md:order-1 md:col-span-8 md:pr-24 pt-12 md:pt-0 flex justify-end">
+<div class="max-w-xl text-right">
+<h2 class="text-5xl font-headline font-bold tracking-tighter uppercase mb-6 text-on-surface">LINEAR BOTTOMS</h2>
+<p class="font-body font-light tracking-wide text-lg text-on-secondary-container mb-10 leading-relaxed">
+                            Architectural draping and technical fabrics. Trousers and skirts designed to break the vertical plane with intentional asymmetry and modular utility.
+                        </p>
+<button class="bg-primary-container hover:bg-on-primary-fixed-variant text-on-surface px-12 py-5 font-headline tracking-[0.2em] uppercase text-xs transition-all duration-300">
+                            ACQUIRE INVENTORY
+                        </button>
+</div>
+</div>
+<div class="order-1 md:order-2 md:col-span-4 h-[716px] relative group overflow-hidden">
+<div class="absolute inset-0 bg-surface-container-high transition-transform duration-700 group-hover:scale-105">
+<img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="textured dark denim pants detail showing intricate stitching and metal hardware in a cold monochromatic setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk3VjzEYZk2xhfG2_2YdbdbiNREBesqgTste5ndhKnjfQmr7etsEl90s03W4_OEijf4bOD7eFc06Kk0qQwOAk1Twbz10mKKk10V6T6cvae3cjPRpg5AeoZzms3kpy6yCs0khIKnYymOJgSCSTXjEplBSjGeT2v_d1pr68ZHnQ5bIktXLv-MMpvbfFdgNXPu2ifF5UFoBhfFInTcqsHwy5oPVmoVOAs8jm6Ls0LpUaIQdzKvD9k9HsDdcu1ca6eWW3jM4HiPXUGnOA"/>
+</div>
+</div>
+</div>
+<!-- Row 3: Accessories -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-center">
+<div class="md:col-span-4 h-[716px] relative group overflow-hidden">
+<div class="absolute inset-0 bg-surface-container-high transition-transform duration-700 group-hover:scale-105">
+<img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="industrial silver jewelry and black leather bag arranged on a slab of dark basalt stone with high contrast shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADOizRi5q92aBz2mDYTN65LbAn1i1DSbY9feu2dXkIvOzBJJZ3AiDdvJeWKT3F_0HiijbjQ4BMUN_EPKY9zj1fXNF824V-Hxd8-kdalIUm8u1KcXMARRjffhZPoGKCKHpNR0QN-_2hVttc_6ZUpp1CaUcp31-UmQbaQUlzI20XL_CuT2YKVinzXYergrf0MGJvgbG16TLSddHSGBaHBdp2XzU26mwrCB49NHqCyG1qfrlEjKeeZ57sQXeYBsorat9zVWkM7B1cetc"/>
+</div>
+</div>
+<div class="md:col-span-8 md:pl-24 pt-12 md:pt-0">
+<div class="max-w-xl">
+<h2 class="text-5xl font-headline font-bold tracking-tighter uppercase mb-6 text-on-surface">COLD ACCESSORIES</h2>
+<p class="font-body font-light tracking-wide text-lg text-on-secondary-container mb-10 leading-relaxed">
+                            The final layer of the monolith. Brutalist silver-work and architectural leather goods. Objects of utility that exist beyond the temporal cycle.
+                        </p>
+<button class="bg-primary-container hover:bg-on-primary-fixed-variant text-on-surface px-12 py-5 font-headline tracking-[0.2em] uppercase text-xs transition-all duration-300">
+                            ACQUIRE INVENTORY
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Lookbook Fragment -->
+<section class="py-32 px-12 bg-surface-dim">
+<div class="grid grid-cols-12 gap-6 h-[1024px]">
+<div class="col-span-5 h-full relative">
+<img class="w-full h-full object-cover brightness-50" data-alt="full body fashion shot of model in dark monochromatic avant-garde streetwear standing in a foggy urban alleyway" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNbqFdXO8v0kqfoegsrFyCEQ0dJLVK1SiNuz8_5rU5l7krDxocHDlWciJK_9sQj1Xqk7wfRtKypP-ONKa0alS5XwkzFOPCWpo9plvdsMmU5bJSZNTXw36eMl5DB_1k7_QNRBpezlXpc083ps54adyeeFM_7ZYqk6sensQUxu4vom1WPxB0ZU6h9ZWHD4WXO9K-3442q67_5WZz1KaOrlo7K3sUoEMjgVgbXRxPxZLuBwY64lxL0iLk5brBIk-bcmz3EQEk-DcLS0A"/>
+</div>
+<div class="col-span-7 flex flex-col justify-between">
+<div class="grid grid-cols-2 gap-6 h-3/5">
+<div class="relative bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-70" data-alt="detailed shot of high fashion textured knitwear in deep charcoal grey against a dark studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSY9RUFu20pMiKWJ_nuIQn-Y6CfzQ8xRoZSuCjold-t72WHZ9DIpqp7nE7NSYNHmboYADO3QW5IUeoZaTPGK5ZB0rnv12wJV-ZxkFwDnXteI4927VaKxNSzShAifrUT8v_hSJGcaGCzWwLGg3WErTQmWRxmHPudLGuXDkLpz9wrR971T5AVqwGA04V-WL8ktw0EucDKuMAlgsrIn1Ma4PxzA-V_5fq7wPGnPx9k-DkI4AT0RwfZmVidyQ7MnPadIoldHFSXGSYn5A"/>
+</div>
+<div class="relative pt-24">
+<div class="bg-primary-container w-full h-full p-12 flex flex-col justify-end border-l-4 border-on-primary-container">
+<span class="font-headline font-bold text-4xl leading-none tracking-tighter uppercase">VOID<br/>STATE</span>
+<p class="font-body text-xs mt-6 tracking-widest uppercase opacity-80">EDITION 001</p>
+</div>
+</div>
+</div>
+<div class="h-1/3 flex items-end">
+<div class="max-w-md">
+<h3 class="font-headline font-bold text-3xl mb-4 tracking-tighter uppercase">THE MANIFESTO OF SHADOW</h3>
+<p class="text-sm font-body font-light opacity-60 leading-relaxed uppercase tracking-wider">
+                                Darkness is not a lack of light, but a deliberate choice of visibility. We build for those who find comfort in the shadows of the monolith.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Infinite Scroll Indicator -->
+<div class="w-full py-20 flex flex-col items-center justify-center gap-4 bg-surface-container-lowest">
+<span class="text-[10px] tracking-[0.5em] text-on-secondary-container uppercase">CONTINUE EXPLORING THE VOID</span>
+<div class="material-symbols-outlined text-primary animate-bounce" data-icon="expand_more">expand_more</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col items-center gap-8 px-12 py-16 bg-[#0e0e0e]">
+<nav class="flex flex-wrap justify-center gap-12">
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.3em] text-[#353534] hover:text-[#e5e2e1] duration-700" href="#">INVENTORY</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.3em] text-[#353534] hover:text-[#e5e2e1] duration-700" href="#">TRANSACTIONS</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.3em] text-[#353534] hover:text-[#e5e2e1] duration-700" href="#">LEGAL</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.3em] text-[#ffb4a8] hover:text-[#e5e2e1] duration-700" href="#">MANIFESTO</a>
+</nav>
+<div class="mt-8">
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.3em] text-[#353534]">© MMXXIV CLOTHINGSHOP. ALL RIGHTS RESERVED.</span>
+</div>
+</footer>
+<!-- Modal Cart Simulation (Hidden State) -->
+<div class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-surface-container-highest/90 backdrop-blur-xl z-[100] translate-x-full transition-transform duration-500 shadow-2xl hidden" id="cart-drawer">
+<div class="h-full flex flex-col p-12">
+<div class="flex justify-between items-center mb-16">
+<h3 class="font-headline font-bold text-2xl tracking-tighter uppercase">CURRENT INVENTORY</h3>
+<button class="material-symbols-outlined text-on-surface hover:text-primary transition-colors" data-icon="close">close</button>
+</div>
+<div class="flex-grow flex flex-col gap-6 overflow-y-auto hide-scrollbar">
+<!-- Empty State -->
+<div class="h-full flex flex-col items-center justify-center text-center opacity-30">
+<span class="material-symbols-outlined text-6xl mb-4" data-icon="inventory_2">inventory_2</span>
+<p class="font-body text-sm uppercase tracking-widest">INVENTORY IS CURRENTLY EMPTY</p>
+</div>
+</div>
+<div class="pt-12 border-t border-outline/20">
+<div class="flex justify-between items-center mb-8">
+<span class="font-label text-xs tracking-widest uppercase">TOTAL VALUE</span>
+<span class="font-headline font-bold text-xl uppercase">$0.00</span>
+</div>
+<button class="w-full bg-primary-container text-on-surface py-5 font-headline font-bold tracking-[0.2em] uppercase text-xs hover:bg-on-primary-fixed-variant transition-colors">
+                    PROCEED TO TRANSACTION
+                </button>
+</div>
+</div>
+</div>
+</body></html>

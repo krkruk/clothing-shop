@@ -1,0 +1,245 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#2a2a2a",
+                        "surface-container": "#201f1f",
+                        "surface-bright": "#393939",
+                        "on-primary": "#690000",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary": "#303030",
+                        "on-surface-variant": "#dfc0bb",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#929190",
+                        "on-primary-fixed-variant": "#920703",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "primary": "#ffb4a8",
+                        "on-secondary-container": "#b6b5b4",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-secondary": "#303030",
+                        "outline": "#a68a86",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-highest": "#353534",
+                        "secondary": "#c8c6c5",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "on-primary-container": "#fb5945",
+                        "inverse-primary": "#b52619",
+                        "inverse-on-surface": "#313030",
+                        "primary-fixed": "#ffdad4",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#57423e",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary": "#c8c6c6",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#410000",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "secondary-container": "#474747",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e4e2e1",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#ffb4a8",
+                        "tertiary-fixed": "#e4e2e1",
+                        "on-background": "#e5e2e1",
+                        "primary-container": "#5c0000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { background-color: #1c1b1b; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e0e; }
+        ::-webkit-scrollbar-thumb { background: #353534; }
+    </style>
+</head>
+<body class="bg-surface-container-lowest font-body text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-12 h-20 w-full ml-64 bg-neutral-950/90 backdrop-blur-xl tonal-shift bg-neutral-900 shadow-none border-b-0">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-neutral-50 tracking-tight font-headline">Add new product</span>
+</div>
+<div class="flex items-center gap-8 font-headline text-sm tracking-widest">
+<div class="relative group">
+<input class="bg-surface-container-low border-b border-outline/20 text-on-surface py-1 px-2 focus:outline-none focus:border-red-600 transition-colors placeholder:text-neutral-600 uppercase text-xs" placeholder="QUERY SYSTEM..." type="text">
+</div>
+<div class="flex items-center gap-4">
+<button class="text-red-600 opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</button>
+<button class="text-red-600 opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-neutral-950 flex flex-col z-50 tonal-shift bg-neutral-900 border-r-0">
+<div class="p-8">
+<h1 class="text-xl font-bold text-neutral-100 font-headline tracking-tighter uppercase">Inventory</h1>
+<p class="text-[10px] text-neutral-500 font-headline tracking-[0.2em] uppercase mt-1">Corpo Goth Admin</p>
+</div>
+<nav class="flex-1 mt-4 px-4 space-y-2">
+<a class="flex items-center gap-3 p-4 text-neutral-100 bg-red-950 font-bold font-headline tracking-tighter uppercase transition-colors scale-95 duration-75" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="">Add new product</span>
+</a>
+<a class="flex items-center gap-3 p-4 text-neutral-500 hover:bg-neutral-800 font-headline tracking-tighter uppercase transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="edit_document">edit_document</span>
+<span class="">Modify/delete product</span>
+</a>
+</nav>
+<div class="p-8 mt-auto">
+<div class="bg-surface-container-lowest p-4 aspect-square border border-outline-variant/10 flex items-center justify-center grayscale opacity-50">
+<img class="max-w-full" data-alt="minimalist architectural fragment of a brutalist concrete building with sharp shadows and dark moody atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVGbuAV816ds4-jp34cHaXK7QxiLoszADQ4NdZDpVGDg2YAQMeCS-KhdbujUHXfbGLg9cCp0WPzUXHUyUGzN6BQhEw35J8WBYtcFgmTh60oCdulFoFtrad9vqizs3_vS14qgH2MAqysHmRRL-fTLxOSi5GwmE7cr0diaqgBhVAIroPjZkWSwXj1SrPyJW8DEES-HodfmJb19Zd8mYFiYmJYue-SCftPejosp8Z5Qk20LO1AjCTtVQca6JrS16TM0jDzKogIncc8q4">
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 pt-20 min-h-screen bg-surface-container-lowest">
+<div class="max-w-6xl mx-auto p-12">
+<header class="mb-16">
+<h2 class="text-4xl font-headline font-black tracking-tighter uppercase text-on-surface">Product Registration</h2>
+<div class="h-1 w-24 bg-primary-container mt-4"></div>
+</header>
+<form class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
+<!-- Identification Cluster -->
+<div class="space-y-12">
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Product Identity</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline/30 focus:border-primary-container transition-colors py-4 px-0 text-lg font-headline uppercase tracking-tighter text-on-surface placeholder:text-neutral-800 focus:ring-0" placeholder="NAME" type="text">
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Precise Abstract</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline/30 focus:border-primary-container transition-colors py-4 px-0 text-sm font-body text-on-surface placeholder:text-neutral-800 focus:ring-0" placeholder="SHORT DESCRIPTION" type="text">
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Valuation</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-0 border-b border-outline/30 focus:border-primary-container transition-colors py-4 px-0 text-sm font-headline tracking-widest text-on-surface focus:ring-0 appearance-none uppercase">
+<option>PLN</option>
+<option>EUR</option>
+<option>USD</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Taxonomy</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-0 border-b border-outline/30 focus:border-primary-container transition-colors py-4 px-0 text-sm font-headline tracking-widest text-on-surface focus:ring-0 appearance-none uppercase">
+<option>Outerwear</option>
+<option>Tailoring</option>
+<option>Accessories</option>
+<option>Objects</option>
+</select>
+</div>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-3 group cursor-pointer">
+<div class="relative flex items-center">
+<input class="peer appearance-none w-5 h-5 border border-outline/30 bg-surface-container-low checked:bg-primary-container transition-all cursor-pointer" id="is_active" type="checkbox">
+<span class="material-symbols-outlined absolute text-[14px] text-on-surface opacity-0 peer-checked:opacity-100 pointer-events-none left-1/2 -translate-x-1/2" data-icon="check">check</span>
+</div>
+<label class="text-[10px] font-headline uppercase tracking-[0.2em] text-on-surface cursor-pointer" for="is_active">Status: Active Inventory</label>
+</div>
+</div>
+<!-- Rich Text & Specifications Cluster -->
+<div class="space-y-12">
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">The Narrative</label>
+<div class="bg-surface-container-low border-l-2 border-outline/10 p-6 min-h-[160px] text-sm text-on-surface/80 leading-relaxed font-body">
+<div class="flex gap-4 mb-4 pb-4 border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-xs cursor-pointer hover:text-primary-container" data-icon="format_bold">format_bold</span>
+<span class="material-symbols-outlined text-xs cursor-pointer hover:text-primary-container" data-icon="format_italic">format_italic</span>
+<span class="material-symbols-outlined text-xs cursor-pointer hover:text-primary-container" data-icon="format_list_bulleted">format_list_bulleted</span>
+</div>
+<p class="text-neutral-600">Enter full clinical description...</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Materiality</label>
+<div class="bg-surface-container-low border border-outline-variant/10 p-4 h-32 overflow-y-auto text-xs font-body text-on-surface/60">
+                                Fabric composition &amp; construction...
+                            </div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Preservation</label>
+<div class="bg-surface-container-low border border-outline-variant/10 p-4 h-32 overflow-y-auto text-xs font-body text-on-surface/60">
+                                Fabrication care &amp; maintenance...
+                            </div>
+</div>
+</div>
+</div>
+<!-- Ethics & Origin (Full Width) -->
+<div class="lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-16 border-t border-outline-variant/10 pt-12">
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Provenance</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline/30 focus:border-primary-container transition-colors py-4 px-0 text-sm font-headline tracking-widest text-on-surface placeholder:text-neutral-800 focus:ring-0 uppercase" placeholder="ETHICS ORIGIN" type="text">
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Societal Resonance</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline/30 focus:border-primary-container transition-colors py-4 px-0 text-sm font-headline tracking-widest text-on-surface placeholder:text-neutral-800 focus:ring-0 uppercase" placeholder="ETHICS IMPACT" type="text">
+</div>
+</div>
+<!-- Assets (Full Width) -->
+<div class="lg:col-span-2 space-y-6">
+<label class="text-[10px] font-headline uppercase tracking-[0.3em] text-outline">Visual Documentation</label>
+<div class="w-full h-64 border-2 border-dashed border-outline-variant/20 bg-surface-container-lowest flex flex-col items-center justify-center group hover:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-neutral-800 group-hover:text-primary-container transition-colors mb-4" data-icon="upload_file">upload_file</span>
+<p class="text-[10px] font-headline tracking-[0.2em] text-neutral-600 uppercase">Drop high-fidelity assets or click to initiate</p>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square bg-surface-container border border-outline-variant/10 flex items-center justify-center grayscale">
+<img class="w-full h-full object-cover opacity-40" data-alt="extreme close-up of dark woven heavy wool fabric texture with dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkRAepccEvYtcbbB9nJd6Bvk03p6g2JPeatceHumjWmJkBk5Z39RGaVhW4jwXSjPqi9qpa_Sh61boDHCx7M7dysuEhM-VuFVJPgohBjfjfigGIBV62mq-1eFPN09_nTcp1AdPZ-xkuwPamJLqDXLUEI6Ha_IVKzVzC1GRxdSt7P5Zy_0NH7_MXV7KqfjEcclEdnRohRE7CmN7WXxRS0FmOMbQ-SKIKvJNvi45vkSV24-GL5WGJMWILP-P8jCuPBmGHHrq845Bcw0Y">
+</div>
+<div class="aspect-square bg-surface-container border border-outline-variant/10 flex items-center justify-center grayscale">
+<img class="w-full h-full object-cover opacity-40" data-alt="sharp silhouette of a structured black garment on a clinical metal rack against a dark void" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rX4sN7g-9vu78VbUm7FEgkzOMpDg7Wa31MEog7JoJ0q09TmvzyC6FBhu7_qrf6wuWjUH8eBe3q2bZCRBKhJtPqFt0teSE4WqK8YVj6PmQBXcN4wXJTW1myOjhhfV76-fbFzfmmRvTxTMIAOyHXOY5Oea4D5IFsI7QmpdyCz_aE7_cG9x3FQsr1GM30Z0VZYW0qykC19GS9YTA3gJ3EPjL5NxIu_0xLj1I4UkCxpYE7Xb2BVn3wA5gEF-U-ExQ1HiyqHIdefqfao">
+</div>
+<div class="aspect-square bg-surface-container-low border border-dashed border-outline-variant/20"></div>
+<div class="aspect-square bg-surface-container-low border border-dashed border-outline-variant/20"></div>
+</div>
+</div>
+<!-- Final Transaction -->
+<div class="lg:col-span-2 flex justify-end pt-12 border-t border-outline-variant/10">
+<button class="bg-primary-container px-16 py-6 text-on-surface font-headline font-black text-sm tracking-[0.3em] uppercase hover:bg-on-primary-fixed-variant transition-all transform hover:-translate-y-1 active:scale-95 shadow-2xl">
+                        Add product</button>
+</div>
+</form>
+</div>
+</main>
+<!-- Structural Decoration -->
+<div class="fixed top-0 right-0 w-1 h-screen bg-gradient-to-b from-primary-container via-transparent to-transparent opacity-20 pointer-events-none"></div>
+</body></html>

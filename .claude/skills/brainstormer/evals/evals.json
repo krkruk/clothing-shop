@@ -1,0 +1,53 @@
+{
+  "skill_name": "brainstormer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a real-time collaboration system and I'm not sure whether to use CRDTs or OT for conflict resolution. Help me think through this.",
+      "expected_output": "Should generate 3 questions using dual-hemisphere thinking about CRDTs vs OT trade-offs, present them sequentially with multiple choice + free input, provide analysis after each answer, and conclude with insights + recommendations.",
+      "files": [],
+      "assertions": [
+        "Output includes a role and context summary at the beginning",
+        "Output generates at least 3 distinct question rounds",
+        "Each question shows evidence of dual-hemisphere thinking",
+        "Each question includes multiple-choice options plus free input option",
+        "After each simulated answer, the output provides analysis with a follow-up insight",
+        "Output concludes with an Insights section containing specific insights",
+        "Output concludes with a Recommendations section with actionable next steps",
+        "The tone is analytical and concise"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to understand the trade-offs between microservices and a monolith for a small team of 4 developers building a SaaS product. We're early stage and need to ship fast.",
+      "expected_output": "Should infer role, generate questions about microservices vs monolith considering team size and stage, provide structured sequential discussion, and wrap up with tailored recommendations.",
+      "files": [],
+      "assertions": [
+        "Output infers the role appropriately without being explicitly told",
+        "Output generates at least 3 distinct question rounds",
+        "Questions address the specific context (4-person team, early stage) not just generic",
+        "Each question includes multiple-choice options plus free input option",
+        "After each simulated answer, the output provides analysis with a follow-up insight",
+        "Output concludes with an Insights section",
+        "Output concludes with a Recommendations section tailored to a small early-stage team",
+        "The tone is analytical and provocative, challenging assumptions"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Help me explore the ethical implications of using AI for hiring decisions. I'm a CTO evaluating whether to adopt an AI screening tool.",
+      "expected_output": "Should infer CTO role, generate questions probing ethical dimensions, challenge assumptions from technical and ethical perspectives, and deliver concrete recommendations.",
+      "files": [],
+      "assertions": [
+        "Output infers the CTO role from context",
+        "Output generates at least 3 distinct question rounds",
+        "Questions probe ethical dimensions (bias, transparency, liability, fairness)",
+        "Each question includes multiple-choice options plus free input option",
+        "Dual-hemisphere thinking combines practical CTO concerns with broader ethical perspective",
+        "After each simulated answer, the output provides analysis with a follow-up insight",
+        "Output concludes with an Insights section",
+        "Output concludes with a Recommendations section actionable by a CTO"
+      ]
+    }
+  ]
+}

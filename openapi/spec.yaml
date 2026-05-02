@@ -1,0 +1,679 @@
+openapi: 3.1.0
+info:
+  title: Clothingshop API
+  description: API for Clothingshop alternative clothing brand e-commerce platform
+  version: 0.1.0
+
+servers:
+  - url: /api/v1
+    description: API v1
+
+security: []
+
+tags:
+  - name: admin-products
+    description: Admin operations for managing products
+  - name: products
+    description: Public product catalog endpoints
+  - name: categories
+    description: Category lookup endpoints
+
+paths:
+  /products:
+    get:
+      tags:
+        - products
+      operationId: listProducts
+      summary: List products with cursor pagination
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque cursor for pagination
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+            minimum: 1
+          description: Maximum number of items per page
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by category slug
+        - name: x-currency-code
+          in: header
+          required: false
+          schema:
+            type: string
+            default: "PLN"
+          description: Currency code for pricing (PLN or EUR, defaults to PLN)
+      responses:
+        '200':
+          description: Paginated list of products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+        '400':
+          description: Invalid cursor
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+  /products/{id}:
+    get:
+      tags:
+        - products
+      operationId: getProductDetail
+      summary: Get product detail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: x-currency-code
+          in: header
+          required: false
+          schema:
+            type: string
+            default: "PLN"
+          description: Currency code for pricing (PLN or EUR, defaults to PLN)
+      responses:
+        '200':
+          description: Product detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetailResponse'
+        '404':
+          description: Product not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+  /categories:
+    get:
+      tags:
+        - categories
+      operationId: listCategories
+      summary: List all categories ordered by display order
+      responses:
+        '200':
+          description: List of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryDto'
+
+  /admin/products:
+    post:
+      tags:
+        - admin-products
+      operationId: createProduct
+      summary: Create a new product
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '422':
+          description: Validation error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+    get:
+      tags:
+        - admin-products
+      operationId: listAdminProducts
+      summary: List all products for admin (including inactive)
+      security:
+        - basicAuth: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque cursor for pagination
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+            minimum: 1
+          description: Maximum number of items per page
+      responses:
+        '200':
+          description: Paginated list of all products including inactive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminProductListResponse'
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+  /admin/products/{id}:
+    put:
+      tags:
+        - admin-products
+      operationId: updateProduct
+      summary: Update a product (partial update - only non-null fields are changed)
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductRequest'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '404':
+          description: Product not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '422':
+          description: Validation error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+    delete:
+      tags:
+        - admin-products
+      operationId: deleteProduct
+      summary: Soft delete a product (sets isActive to false)
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Product deleted successfully
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '404':
+          description: Product not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+  /admin/products/{id}/image:
+    post:
+      tags:
+        - admin-products
+      operationId: uploadProductImage
+      summary: Upload an image for a product
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: "Image file. Supported content types: image/jpeg, image/png, image/webp"
+                alt:
+                  type: string
+                  maxLength: 200
+                  description: Alternative text for the image
+      responses:
+        '201':
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageUploadResponse'
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '404':
+          description: Product not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '422':
+          description: Validation error (unsupported content type, file too large)
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+  /admin/products/{id}/images/{imageId}:
+    delete:
+      tags:
+        - admin-products
+      operationId: deleteProductImage
+      summary: Delete a product image
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: imageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Image deleted successfully
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '404':
+          description: Product or image not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication for admin endpoints
+
+  schemas:
+    CreateProductRequest:
+      type: object
+      required:
+        - name
+        - description
+        - shortDescription
+        - prices
+        - categoryId
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 200
+        description:
+          type: string
+        shortDescription:
+          type: string
+        prices:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            $ref: '#/components/schemas/ProductPriceDto'
+        categoryId:
+          type: string
+          format: uuid
+        sku:
+          type: string
+          nullable: true
+          maxLength: 100
+        isActive:
+          type: boolean
+          default: true
+        fabrication:
+          $ref: '#/components/schemas/FabricationDto'
+        ethics:
+          $ref: '#/components/schemas/EthicsDto'
+
+    UpdateProductRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 200
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        shortDescription:
+          type: string
+          nullable: true
+        prices:
+          type: array
+          maxItems: 2
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ProductPriceDto'
+        categoryId:
+          type: string
+          format: uuid
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+          maxLength: 100
+        isActive:
+          type: boolean
+          nullable: true
+        fabrication:
+          $ref: '#/components/schemas/FabricationDto'
+          nullable: true
+        ethics:
+          $ref: '#/components/schemas/EthicsDto'
+          nullable: true
+
+    ProductResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        shortDescription:
+          type: string
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductPriceDto'
+        sku:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+        category:
+          $ref: '#/components/schemas/CategoryDto'
+        fabrication:
+          $ref: '#/components/schemas/FabricationDto'
+        ethics:
+          $ref: '#/components/schemas/EthicsDto'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImageDto'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ProductListResponse:
+      type: object
+      required:
+        - items
+        - hasMore
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSummary'
+        nextCursor:
+          type: string
+          nullable: true
+        hasMore:
+          type: boolean
+
+    ProductSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        price:
+          type: string
+          format: decimal
+        currency:
+          type: string
+        imageUrl:
+          type: string
+          format: uri
+          nullable: true
+        shortDescription:
+          type: string
+        category:
+          $ref: '#/components/schemas/CategoryDto'
+
+    ProductDetailResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        shortDescription:
+          type: string
+        price:
+          type: string
+          format: decimal
+        currency:
+          type: string
+        sku:
+          type: string
+          nullable: true
+        imageUrl:
+          type: string
+          format: uri
+          nullable: true
+        category:
+          $ref: '#/components/schemas/CategoryDto'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImageDto'
+        fabrication:
+          $ref: '#/components/schemas/FabricationDto'
+        ethics:
+          $ref: '#/components/schemas/EthicsDto'
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductPriceDto'
+
+    AdminProductListResponse:
+      type: object
+      required:
+        - items
+        - hasMore
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductResponse'
+        nextCursor:
+          type: string
+          nullable: true
+        hasMore:
+          type: boolean
+
+    ProductImageDto:
+      type: object
+      properties:
+        imageId:
+          type: string
+          format: uuid
+        imageUrl:
+          type: string
+          format: uri
+        alt:
+          type: string
+          nullable: true
+        displayOrder:
+          type: integer
+
+    ImageUploadResponse:
+      type: object
+      properties:
+        imageId:
+          type: string
+          format: uuid
+        imageUrl:
+          type: string
+          format: uri
+
+    CategoryDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        slug:
+          type: string
+        name:
+          type: string
+
+    FabricationDto:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 500
+        care:
+          type: string
+          maxLength: 500
+
+    EthicsDto:
+      type: object
+      properties:
+        origin:
+          type: string
+          maxLength: 200
+        impact:
+          type: string
+          maxLength: 500
+
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: A URI reference that identifies the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem
+        status:
+          type: integer
+          description: The HTTP status code
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence
+        fields:
+          type: array
+          description: List of field-level validation errors
+          items:
+            $ref: '#/components/schemas/FieldError'
+
+    FieldError:
+      type: object
+      properties:
+        field:
+          type: string
+          description: The field that caused the error
+        message:
+          type: string
+          description: The error message for this field
+
+    ProductPriceDto:
+      type: object
+      required:
+        - currency
+        - price
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        price:
+          type: string
+          format: decimal

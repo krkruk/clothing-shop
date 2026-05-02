@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#2a2a2a",
+                    "surface-container": "#201f1f",
+                    "surface-bright": "#393939",
+                    "on-primary": "#690000",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-tertiary": "#303030",
+                    "on-surface-variant": "#dfc0bb",
+                    "surface": "#131313",
+                    "on-tertiary-container": "#929190",
+                    "on-primary-fixed-variant": "#920703",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "primary": "#ffb4a8",
+                    "on-secondary-container": "#b6b5b4",
+                    "surface-variant": "#353534",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "on-secondary": "#303030",
+                    "outline": "#a68a86",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container-highest": "#353534",
+                    "secondary": "#c8c6c5",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-primary-container": "#fb5945",
+                    "inverse-primary": "#b52619",
+                    "inverse-on-surface": "#313030",
+                    "primary-fixed": "#ffdad4",
+                    "on-surface": "#e5e2e1",
+                    "outline-variant": "#57423e",
+                    "inverse-surface": "#e5e2e1",
+                    "tertiary": "#c8c6c6",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#410000",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "secondary-container": "#474747",
+                    "on-secondary-fixed-variant": "#474747",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "secondary-fixed": "#e4e2e1",
+                    "surface-dim": "#131313",
+                    "surface-tint": "#ffb4a8",
+                    "tertiary-fixed": "#e4e2e1",
+                    "on-background": "#e5e2e1",
+                    "primary-container": "#5c0000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            transition: background-color 0.3s ease;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5c0000;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased overflow-hidden">
+<!-- TopNavBar -->
+<nav class="fixed left-0 top-0 h-20 w-full ml-64 flex justify-between items-center px-12 bg-neutral-950/90 backdrop-blur-xl z-50">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-neutral-50 tracking-tight font-headline">The Obsidian Monolith</span>
+</div>
+<div class="flex items-center gap-8">
+<div class="relative group">
+<input class="bg-surface-container-low border-b border-outline/20 focus:border-primary px-4 py-2 text-xs tracking-widest outline-none transition-all w-64 font-label uppercase" placeholder="SEARCH INVENTORY..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-2 text-neutral-500 text-sm">search</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="opacity-80 hover:opacity-100 transition-opacity text-red-600">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</button>
+<button class="opacity-80 hover:opacity-100 transition-opacity text-neutral-400 hover:text-neutral-50">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="flex h-screen pt-20">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col bg-neutral-950 z-[60]">
+<div class="p-8 pb-12">
+<div class="text-xl font-bold text-neutral-100 font-headline tracking-tighter uppercase mb-1">Inventory</div>
+<div class="text-[10px] text-neutral-500 font-headline tracking-[0.2em] uppercase">Corpo Goth Admin</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Tab: Add new product (Inactive) -->
+<a class="flex items-center gap-4 px-4 py-4 text-neutral-500 hover:bg-neutral-800 transition-colors group font-headline tracking-tighter uppercase text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="add_box">add_box</span>
+<span>Add new product</span>
+</a>
+<!-- Tab: Modify/delete product (Active) -->
+<a class="flex items-center gap-4 px-4 py-4 text-neutral-100 bg-red-950 font-bold font-headline tracking-tighter uppercase text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="edit_document">edit_document</span>
+<span>Modify/delete product</span>
+</a>
+</nav>
+<div class="p-8 mt-auto border-t border-neutral-900">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container flex items-center justify-center">
+<span class="text-[10px] font-bold text-on-surface">SYS</span>
+</div>
+<div>
+<div class="text-[10px] text-neutral-400 font-label uppercase tracking-widest">Operator</div>
+<div class="text-xs text-neutral-100 font-headline tracking-tight">V_ARCHITECT_01</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (2/3) -->
+<main class="ml-64 flex-1 overflow-y-auto bg-surface-dim p-12">
+<div class="max-w-6xl mx-auto">
+<!-- Page Header -->
+<header class="mb-12 flex justify-between items-end">
+<div>
+<h1 class="text-4xl font-bold font-headline tracking-tighter uppercase text-neutral-50 mb-2">Inventory Management</h1>
+<p class="text-neutral-500 font-label text-sm max-w-xl">A clinical overview of current assets within the Obsidian ecosystem. Modification and removal actions are permanent and recorded.</p>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-primary font-label uppercase tracking-[0.3em] mb-1">Total Assets</div>
+<div class="text-3xl font-headline font-light tracking-tighter text-neutral-100">1,248</div>
+</div>
+</header>
+<!-- Inventory Table Section -->
+<div class="bg-surface-container-lowest overflow-hidden">
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-none">
+<th class="px-6 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] font-label">Asset</th>
+<th class="px-6 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] font-label">Identity</th>
+<th class="px-6 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] font-label">Classification</th>
+<th class="px-6 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] font-label">Modified</th>
+<th class="px-6 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] font-label text-right">Directives</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant/10">
+<!-- Table Row 1 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-6">
+<div class="w-16 h-20 bg-surface-container-high relative overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="Avant-garde minimalist black fashion silhouette against a stark concrete architectural background with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-sg0N9oGsiedAD5Qu8VyaIw7M17OooMjK505Xwh-dQWpqeliLROaRTKiE77lpSnuY8qDGOghw4DInqus_KCy8xGJ0-_FapaB-ekU-OqwYVMva5pW2Ov7qlo2XnO0bFP8OCIT1HZtp3iqgzy8DqR0c6GAMYgK_hhN0rmaCREyO-vVUWz1-hpoAiI6ICbno_A9hfdrsUgs6Us0RlxKnWjV7S8seMsjHDspUbQ91Eqle8bqihs6tEbvaH0lX4JT-EtVvzWuFkp2m85k"/>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-sm font-bold font-headline text-neutral-100 tracking-tight mb-1">VOID_OBLIQUE_COAT</div>
+<div class="text-[10px] text-neutral-500 font-label tracking-widest uppercase">SKU: OBS-772-B</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-xs text-neutral-400 font-label leading-relaxed max-w-xs">High-density architectural wool blend. Asymmetrical tailoring for the urban monolith.</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-xs text-neutral-500 font-label uppercase">2024-10-12</div>
+<div class="text-[10px] text-primary/60 font-label tracking-tighter">14:22 UTC</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="bg-primary-container text-on-surface px-4 py-2 text-[10px] font-bold font-label uppercase tracking-widest hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">edit</span>
+                                                Update
+                                            </button>
+<button class="bg-transparent border border-outline/20 text-neutral-500 hover:text-error hover:border-error transition-colors px-4 py-2 text-[10px] font-bold font-label uppercase tracking-widest">
+                                                Delete
+                                            </button>
+</div>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-6">
+<div class="w-16 h-20 bg-surface-container-high relative overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="Monochromatic studio portrait of dark textured heavy fabric hanging in structural folds with sharp angular lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnw9DqgLxaMuDsW-XuvhUxKu4kzxlEs2bwRNYu3ffrUqqdZK4jP7-ZejwtNcOflmBrT5PXnX-Z0kc7iNmcKBKUZqDpiL5ga5nRBbeLNAmS7aA86peumH_gKR7C70HHJlF6ExzUmeaGz59QA0tUxY8LzVD6TLnO3Vl1z2Q7ycpl0zHJmiBIlaFEi3evVB_jXuthJdQdNSssgFIoZ4ojdPgzYAoiILD2k1u1HZjFRdZJKcNtxghbhpYGNm2cDwXfWtY8huoOdcT3VTs"/>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-sm font-bold font-headline text-neutral-100 tracking-tight mb-1">CRIMSON_TETHER_WRAP</div>
+<div class="text-[10px] text-neutral-500 font-label tracking-widest uppercase">SKU: OBS-104-R</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-xs text-neutral-400 font-label leading-relaxed max-w-xs">Silk-infused visceral binding. Layering element for ritual corporate contexts.</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-xs text-neutral-500 font-label uppercase">2024-10-08</div>
+<div class="text-[10px] text-primary/60 font-label tracking-tighter">09:15 UTC</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="bg-primary-container text-on-surface px-4 py-2 text-[10px] font-bold font-label uppercase tracking-widest hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">edit</span>
+                                                Update
+                                            </button>
+<button class="bg-transparent border border-outline/20 text-neutral-500 hover:text-error hover:border-error transition-colors px-4 py-2 text-[10px] font-bold font-label uppercase tracking-widest">
+                                                Delete
+                                            </button>
+</div>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-6">
+<div class="w-16 h-20 bg-surface-container-high relative overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="Extreme close-up of obsidian black metallic hardware and heavy leather straps on an avant-garde garment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv4l5iHla1J7UwEiPPikuXJVJPh39SdheOo4Oib1_uZZ-JremM9x7g0Ck6xW34d70HnmJjolpT26n4reRQOMRM6oAJQ3YsWrxAmZ_2_W3hfQPtH9j7pFt-yHtPKx20d0M-yn1tnopyzqM6PG56FYHRqwT1jRLQOWkWEjT0gmlIIRzfEeF633Y1Jeldonn8ARQE_62YXI_z7V3Wb6JmiuFXxLq1hyU2-np3jCMuQm-lJih1zfNTq_-_rI_2epypKHrGNTVhHXGfKLY"/>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-sm font-bold font-headline text-neutral-100 tracking-tight mb-1">MONOLITH_LEATHER_V1</div>
+<div class="text-[10px] text-neutral-500 font-label tracking-widest uppercase">SKU: OBS-001-L</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-xs text-neutral-400 font-label leading-relaxed max-w-xs">Matte finish structural hide. Reinforced skeletal frame for posture authority.</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-xs text-neutral-500 font-label uppercase">2024-09-30</div>
+<div class="text-[10px] text-primary/60 font-label tracking-tighter">18:45 UTC</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="bg-primary-container text-on-surface px-4 py-2 text-[10px] font-bold font-label uppercase tracking-widest hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">edit</span>
+                                                Update
+                                            </button>
+<button class="bg-transparent border border-outline/20 text-neutral-500 hover:text-error hover:border-error transition-colors px-4 py-2 text-[10px] font-bold font-label uppercase tracking-widest">
+                                                Delete
+                                            </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-8 py-6 bg-surface-container-low flex justify-between items-center border-t border-surface-variant/10">
+<div class="text-[10px] font-label text-neutral-500 tracking-widest uppercase">
+                            Displaying 1-3 of 1,248 units
+                        </div>
+<div class="flex gap-1">
+<button class="w-10 h-10 flex items-center justify-center border border-outline/10 text-neutral-500 bg-surface-container-lowest">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-primary text-primary bg-primary-container/20 font-bold text-xs font-headline">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline/10 text-neutral-400 hover:bg-surface-container transition-colors text-xs font-headline">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline/10 text-neutral-400 hover:bg-surface-container transition-colors text-xs font-headline">3</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline/10 text-neutral-400 hover:bg-surface-container transition-colors text-xs font-headline">...</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline/10 text-neutral-500 bg-surface-container-lowest">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Admin Footer Fragment -->
+<div class="mt-12 grid grid-cols-3 gap-8">
+<div class="p-6 bg-surface-container-low">
+<div class="text-[10px] text-neutral-500 font-label uppercase tracking-widest mb-2">System Status</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-primary animate-pulse"></div>
+<div class="text-sm font-headline tracking-tight text-neutral-300 uppercase">Synchronized</div>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low">
+<div class="text-[10px] text-neutral-500 font-label uppercase tracking-widest mb-2">Access Level</div>
+<div class="text-sm font-headline tracking-tight text-neutral-300 uppercase">Super_Administrator</div>
+</div>
+<div class="p-6 bg-surface-container-low">
+<div class="text-[10px] text-neutral-500 font-label uppercase tracking-widest mb-2">Data Integrity</div>
+<div class="text-sm font-headline tracking-tight text-neutral-300 uppercase">Validated_100%</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- UI Overlay for 'Update' intent (Simulated Modal State) -->
+<!-- This is a visual hint to satisfy "Update button should look like it would open a modal" -->
+<div class="fixed bottom-12 right-12 flex flex-col gap-4 pointer-events-none">
+<div class="bg-surface-container-highest p-6 shadow-2xl opacity-0 translate-y-4 transition-all duration-700 hover:opacity-100 hover:translate-y-0 group pointer-events-auto cursor-help border-l-4 border-primary">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<div>
+<div class="text-xs font-bold font-headline uppercase text-neutral-100 mb-1 tracking-tighter">Modification Protocol</div>
+<div class="text-[10px] text-neutral-400 font-label max-w-[200px] leading-relaxed uppercase tracking-wider">Selecting 'Update' initiates a focused modal environment for asset reconfiguration.</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

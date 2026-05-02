@@ -1,0 +1,12 @@
+# Environment files
+infra/.env
+
+# OS files
+.DS_Store
+*.swp
+
+# Generated API clients
+frontend/src/api/generated/
+
+# Seed images are committed to the repo (personal product photos)
+

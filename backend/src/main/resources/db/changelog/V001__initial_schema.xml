@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd">
+
+    <!-- Categories -->
+    <changeSet id="V001-categories" author="clothingshop">
+        <createTable tableName="category">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="slug" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name_en" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name_pl" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name_es" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description_en" type="TEXT"/>
+            <column name="description_pl" type="TEXT"/>
+            <column name="description_es" type="TEXT"/>
+            <column name="display_order" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMPTZ" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMPTZ" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Category seeds -->
+    <changeSet id="V001-category-seeds" author="clothingshop">
+        <insert tableName="category">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="slug" value="tops"/>
+            <column name="name_en" value="Tops"/>
+            <column name="name_pl" value="Topy"/>
+            <column name="name_es" value="Parte superior"/>
+            <column name="description_en" value="Shirts, hoodies, and everything in between"/>
+            <column name="description_pl" value="Koszule, bluzy i wszystko pomiedzy"/>
+            <column name="description_es" value="Camisas, sudaderas y todo lo intermedio"/>
+            <column name="display_order" valueNumeric="1"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="slug" value="coats"/>
+            <column name="name_en" value="Coats"/>
+            <column name="name_pl" value="Plaszcze"/>
+            <column name="name_es" value="Abrigos"/>
+            <column name="description_en" value="Jackets, coats, and layers for the dark season"/>
+            <column name="description_pl" value="Kurtki, plaszcze i warstwy na ciemny sezon"/>
+            <column name="description_es" value="Chaquetas, abrigos y capas para la temporada oscura"/>
+            <column name="display_order" valueNumeric="2"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="slug" value="bottoms"/>
+            <column name="name_en" value="Bottoms"/>
+            <column name="name_pl" value="Dol"/>
+            <column name="name_es" value="Parte inferior"/>
+            <column name="description_en" value="Trousers, skirts, and legwear"/>
+            <column name="description_pl" value="Spodnie, spodnice i odziez na nogi"/>
+            <column name="description_es" value="Pantalones, faldas y ropa para las piernas"/>
+            <column name="display_order" valueNumeric="3"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="slug" value="accessories"/>
+            <column name="name_en" value="Accessories"/>
+            <column name="name_pl" value="Akcesoria"/>
+            <column name="name_es" value="Accesorios"/>
+            <column name="description_en" value="Jewelry, bags, and finishing touches"/>
+            <column name="description_pl" value="Bizuteria, torby i koncowe detale"/>
+            <column name="description_es" value="Joyeria, bolsos y toques finales"/>
+            <column name="display_order" valueNumeric="4"/>
+        </insert>
+    </changeSet>
+
+    <!-- Products (no price/currency columns) -->
+    <changeSet id="V001-products" author="clothingshop">
+        <createTable tableName="product">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="short_description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_product_category" referencedTableName="category" referencedColumnNames="id"/>
+            </column>
+            <column name="sku" type="VARCHAR(100)">
+                <constraints unique="true" nullable="true"/>
+            </column>
+            <column name="fabrication_content" type="VARCHAR(500)"/>
+            <column name="fabrication_care" type="VARCHAR(500)"/>
+            <column name="ethics_origin" type="VARCHAR(200)"/>
+            <column name="ethics_impact" type="VARCHAR(500)"/>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMPTZ" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMPTZ" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Product prices (one row per currency per product) -->
+    <changeSet id="V001-product-prices" author="clothingshop">
+        <createTable tableName="product_price">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="product_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_product_price_product" referencedTableName="product" referencedColumnNames="id"/>
+            </column>
+            <column name="currency" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="product_price" columnNames="product_id, currency" constraintName="uq_product_price_currency"/>
+    </changeSet>
+
+    <!-- Product images -->
+    <changeSet id="V001-product-images" author="clothingshop">
+        <createTable tableName="product_image">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="product_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_product_image_product" referencedTableName="product" referencedColumnNames="id"/>
+            </column>
+            <column name="object_key" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="variant" type="VARCHAR(20)" defaultValue="ORIGINAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alt" type="VARCHAR(200)"/>
+            <column name="display_order" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMPTZ" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

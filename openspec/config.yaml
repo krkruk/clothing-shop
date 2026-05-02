@@ -1,0 +1,53 @@
+schema: spec-driven
+
+context: |
+  Tech stack:
+    - Backend: Java 21, Spring Boot 3.x, Gradle (Kotlin DSL)
+    - Frontend: SvelteKit + TypeScript, Vite, Tailwind CSS 4
+    - Database: PostgreSQL 16 (Liquibase migrations)
+    - Object Storage: MinIO (S3-compatible, pre-signed URL uploads)
+    - Reverse Proxy: nginx (same-origin routing, no CORS)
+    - API Contract: OpenAPI 3.1 (openapi/spec.yaml) — contract-first with code generation
+    - Acceptance Tests: Playwright + Python 3.12+ (uv), see acceptance_test/
+    - Container Runtime: Podman (rootless), Compose v3
+    - Task Runner: GNU Make (all commands go through Makefile)
+
+  Architecture:
+    - Monorepo: backend/, frontend/, infra/, openapi/, acceptance_test/
+    - nginx on :8080 routes /api/* → backend, /images/* → MinIO, / → frontend
+    - Generated code is gitignored — always update openapi/spec.yaml and run make generate
+    - Base backend package: com.clothingshop (controller/, service/, repository/, entity/, config/, exception/)
+    - Frontend: SvelteKit file-based routing (src/routes/), components in src/lib/components/, cart store using Svelte 5 runes
+
+  Key conventions:
+    - Server-authoritative pricing (client never submits prices)
+    - Soft delete for products; orders are fully immutable
+    - Cursor pagination (Spring Slice<>, no COUNT queries)
+    - RFC 9457 Problem Details error format (application/problem+json)
+    - Order lines have no quantity field — each line is a unique personalized item
+    - Admin auth via HTTP Basic (demo: admin/admin)
+    - Frontend cart in localStorage, no backend session
+
+  Design system ("The Obsidian Monolith"):
+    - No rounded corners on interactive elements
+    - No visible shadows — depth via tonal contrast only
+    - No 1px solid borders for sectioning
+    - Fonts: Space Grotesk (display), Manrope (body)
+    - Brand voice: "ACQUIRE" not "Buy", "CURRENT INVENTORY" not "Cart", "Artifacts" not "Products"
+
+rules:
+  proposal:
+    - Always include a "Non-goals" section
+    - Identify which OpenAPI endpoints (if any) are affected
+  design:
+    - Reference existing patterns in controller/, service/, entity/ before inventing new ones
+    - If the change touches the API, describe the openapi/spec.yaml changes needed
+    - If the change adds a new entity, describe the Liquibase migration and repository needed
+  tasks:
+    - NON-NEGOTIABLE: Every change implementation cycle MUST include acceptance tests in acceptance_test/
+    - Acceptance tests use Playwright (Python) for browser/UI flows and bash scripts in acceptance_test/curl_test_scripts/ for quick API interactions
+    - Break tasks into manageable chunks — each task should produce a testable increment
+    - If the change adds or modifies API endpoints, add/update corresponding curl test scripts in acceptance_test/curl_test_scripts/
+    - If the change adds or modifies UI pages/components, add/update Playwright tests in acceptance_test/tests/
+    - Run acceptance tests with: cd acceptance_test && uv run pytest -v
+    - Acceptance test fixtures are in acceptance_test/conftest.py (api_base_url, admin_auth, category_id, container discovery)

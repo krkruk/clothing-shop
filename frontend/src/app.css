@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-surface-container-lowest: #0e0e0e;
+	--color-surface-dim: #131313;
+	--color-surface-container-low: #1c1b1b;
+	--color-surface-container: #201f1f;
+	--color-surface-container-high: #2a2a2a;
+	--color-surface-container-highest: #353534;
+	--color-primary: #ffb4a8;
+	--color-primary-container: #5c0000;
+	--color-on-primary-fixed-variant: #920703;
+	--color-on-surface: #e5e2e1;
+	--color-on-secondary-container: #b6b5b4;
+	--color-outline: #a68a86;
+	--color-outline-variant: #57423e;
+	--color-content-white: #f5f5f5;
+
+	--font-headline: 'Space Grotesk', sans-serif;
+	--font-body: 'Manrope', sans-serif;
+	--font-label: 'Manrope', sans-serif;
+
+	--radius-default: 0px;
+	--radius-lg: 0px;
+	--radius-xl: 0px;
+}
+
+/* Global styles */
+:root {
+	scrollbar-width: thin;
+	scrollbar-color: #5c0000 #0e0e0e;
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background: #0e0e0e;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #5c0000;
+}
+
+::selection {
+	background: #5c0000;
+	color: #e5e2e1;
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 200;
+}
+
+body {
+	margin: 0;
+	background-color: #0e0e0e;
+	color: #e5e2e1;
+	font-family: 'Manrope', sans-serif;
+}
